@@ -8,19 +8,23 @@ public class validParentheses {
         Stack<Character> close = new Stack<>();
         if (s.charAt(0) == ')' || s.charAt(0) == ']' || s.charAt(0) == '}' || s.length() == 0) {
             return false;
+
         }
         for (int i = 0; i < s.length(); i++) {
             if (s.charAt(i) == '(') {
-                close.push('(');}
+                close.push('(');
+            }
             if (s.charAt(i) == '[') {
-                close.push('[');}
+                close.push('[');
+            }
             if (s.charAt(i) == '{') {
-                close.push('{');}
+                close.push('{');
+            }
             if (!close.isEmpty()) {
                 if (s.charAt(i) == '}' || s.charAt(i) == ')' || s.charAt(i) == ']') {
                     if (s.charAt(i) == ')' && close.peek() == '(') {
-                        close.pop();}
-                    else if (s.charAt(i) == '}' && close.peek() == '{') {
+                        close.pop();
+                    } else if (s.charAt(i) == '}' && close.peek() == '{') {
                         close.pop();
                     } else if (s.charAt(i) == ']' && close.peek() == '[') {
                         close.pop();
@@ -29,9 +33,16 @@ public class validParentheses {
                     }
                 }
             } else {
-                return false;}}
-        return close.isEmpty();}
+                return false;
+            }
+        }
+        return close.isEmpty();
+    }
+
     public static void main(String[] args) {
-         System.out.println(isValid("("));
+        System.out.println(isValid("("));
+
     }
 }
+
+
