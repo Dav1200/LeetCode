@@ -8,6 +8,8 @@ public class plusOne {
             return digits;
         }
 
+
+
         boolean all9 = true;
         int changeIndex = 0;
 
@@ -20,11 +22,15 @@ public class plusOne {
             }
         }
         int[] b = new int[digits.length];
+
+
         if(all9){
             int[] a = new int[digits.length+1];
             a[0] = 1;
             return a;
         }
+
+
 
         else
             for(int i =0;i<=changeIndex;i++){

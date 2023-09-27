@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+
 public class sameTree {
+    static boolean test = true;
 
     public static class TreeNode {
         int val;
@@ -19,23 +22,31 @@ public class sameTree {
         }
 
 
-
     }
+
     public static boolean isSameTree(TreeNode p, TreeNode q) {
+        if (p == null && q == null)
+            return true;
 
+        /* 2. both non-empty -> compare them */
+        if (p != null && q != null)
+            return (p.val == q.val && isSameTree(p.left, q.left) && isSameTree(p.right, q.right));
 
+        /* 3. one empty, one not -> false */
+        return false;
 
-        
     }
+
+
     public static void main(String[] args) {
 
-       TreeNode a = new TreeNode(1);
-       a.left = new TreeNode(2);
-       a.right = new TreeNode(3);
+        TreeNode a = new TreeNode(1);
+        a.left = new TreeNode(2);
+
         TreeNode b = new TreeNode(1);
-        b.left = new TreeNode(2);
+
         b.right = new TreeNode(3);
 
-        System.out.println(isSameTree(a,b));
+        System.out.println(isSameTree(a, b));
     }
 }
