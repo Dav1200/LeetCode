@@ -38,6 +38,11 @@ public class sameTree {
     }
 
 
+    /*
+    2=2
+
+     */
+    //
     public static void main(String[] args) {
 
         TreeNode a = new TreeNode(1);
