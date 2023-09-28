@@ -87,8 +87,15 @@ public class practice {
     }
 
     public static String simpleEvens(Integer num) {
-        
+        String[] nums =  String.valueOf(num).split("");
 
+        for(int i = 0; i < nums.length;i++){
+            if(Integer.parseInt(nums[i]) %2 != 0){
+                return "false";
+            }
+        }
+
+return "true";
     }
 
     public static String superincreasing(int[] arr) {
@@ -123,5 +130,7 @@ public class practice {
 
         String result1 = simpleEvens(222252);
         System.out.println(result1);
+        String result2 = simpleEvens(228);
+        System.out.println(result2);
     }
 }
