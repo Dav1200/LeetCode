@@ -1,7 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
+import java.util.*;
 
 public class practice {
 
@@ -139,62 +137,142 @@ public class practice {
     }
 
     public static String palindromeCreator(String str) {
-        if (ispalin(str)){
+        if (ispalin(str)) {
             return "palindrome";
+        }
+
+        for (int i = 0; i < str.length(); i++) {
+            String changed = updateString(str, i);
+
+            if (ispalin(changed)) {
+                return str.charAt(i) + "";
+            }
+
+            for (int j = i + 1; j < str.length(); j++) {
+                String changed2 = updateString(changed, j - 1);
+                if (ispalin(changed2)) {
+                    return str.charAt(i) + "" + str.charAt(j);
+                }
+            }
+
+        }
+
+
+        return "not possible";
+
     }
 
-        for(int i = 0 ; i< str.length();i++){
-            String changed = updateString(str,i);
 
-            if(ispalin(changed)){
-                return str.charAt(i)+"";
-            }
+    public static String updateString(String str, int index) {
 
-            for(int j = i+1;j<str.length();j++){
-                String changed2 = updateString(changed,j-1);
-            if(ispalin(changed2)){
-                return str.charAt(i) +""+str.charAt(j);
-            }
-            }
+        return str.substring(0, index) + str.substring(index + 1);
+    }
 
-        }
-
-
-return "not possible";
-
-}
-
-
-public static String updateString(String str, int index){
-
-        return str.substring(0,index) + str.substring(index+1);
-}
-public static boolean ispalin(String str){
+    public static boolean ispalin(String str) {
 
         StringBuilder reversed = new StringBuilder(str).reverse();
-        if(str.equals(reversed.toString())){
+        if (str.equals(reversed.toString())) {
             return true;
-        }
-        else {
+        } else {
             return false;
         }
-}
+    }
+
+    public static String nonrepeatingCharacter(String str) {
+        str = str.toLowerCase();
+        LinkedHashMap<Character, Integer> occr = new LinkedHashMap<>();
+        for (int i = 0; i < str.length(); i++) {
+            if (occr.containsKey(str.charAt(i))) {
+                occr.put(str.charAt(i), occr.get(str.charAt(i)) + 1);
+            } else {
+                occr.put(str.charAt(i), 1);
+            }
+        }
+        for (Map.Entry<Character, Integer> entry : occr.entrySet()) {
+
+            if (entry.getValue() == 1) {
+                return entry.getKey() + "";
+            }
+        }
+        return "asd";
+
+    }
+
+    public static int numberAddition(String str) {
+
+        str = str.replaceAll("[^0-9]", " ");
+        str = str.trim();
+        String[] digit = str.split(" ");
+        int sum = 0;
+        for (int i = 0; i < digit.length; i++) {
+            if (!digit[i].equals("")) {
+                sum += Integer.parseInt(digit[i]);
+            }
+        }
+        return sum;
+    }
+
+    public static int multiplicativePersistence(int num) {
+        int times = 0;
+        int prod = 1;
+
+        while (num > 9) {
+            String[] a = String.valueOf(num).split("");
+            for (int i = 0; i < a.length; i++) {
+                prod = prod * Integer.parseInt(a[i]);
+            }
+            times++;
+            num = prod;
+            prod = 1;
 
 
-public static int numberAddition(String str) {
+        }
 
-    str = str.replaceAll("[^0-9]", " ");
-    str = str.trim();
-    String[] digit = str.split(" ");
-    int sum = 0;
-    for (int i = 0; i < digit.length; i++) {
-        if(!digit[i].equals("")){
-        sum += Integer.parseInt(digit[i]);
-    }}
-    return sum;
-}
+        return times;
+
+    }
+
+    public static int meanMode(int[] nums ){
+        int mean = 0;
+        int mode= 0;
+        HashMap<Integer,Integer> modeMap = new HashMap<>();
+        for(int i = 0 ; i < nums.length;i++)
+        {
+            if(modeMap.containsKey(nums[i])){
+               modeMap.put(nums[i],modeMap.get(nums[i])+1);
+            }
+            else {
+                modeMap.put(nums[i],1);
+            }
+
+
+            mean += nums[i];
+
+        }
+        mean = mean/nums.length;
+
+        int high = 0;
+         int value = 0;
+
+        for(Map.Entry<Integer,Integer> ent:modeMap.entrySet()){
+         if(ent.getValue() > high){
+             high = ent.getValue();
+             value = ent.getKey();
+         }
+        }
+        if(value == mean){
+            return 1;
+        }
+        else
+            return 0;
+
+    }
+
     public static void main(String[] args) {
-
+        var result1 = meanMode(new int[]{5, 3, 3, 3, 1});
+        System.out.println(result1);
+        var result2 = meanMode(new int[]{64, 64, 64, 64, 64, 64, 64, 64, 1024});
+        System.out.println(result2);
         //String result = stringMerge("abc1*kyoo");
         //System.out.println(result);
 
@@ -210,16 +288,16 @@ public static int numberAddition(String str) {
         // var result2 = simpleSymbols("=+e++r+ff+v+");
         //System.out.println(result2);
 
-      //  String result1 = simpleEvens(222252);
-      //  System.out.println(result1);
+        //  String result1 = simpleEvens(222252);
+        //  System.out.println(result1);
         //String result2 = simpleEvens(228);
-       // System.out.println(result2);
+        // System.out.println(result2);
 
 
-       // var result1 = simpleAdding(100);
-       // System.out.println(result1);
+        // var result1 = simpleAdding(100);
+        // System.out.println(result1);
         //var result2 = simpleAdding(8);
-       // System.out.println(result2);
+        // System.out.println(result2);
 
         //var result1 = thirdGreatest(new String[]{"flowers", "decorate", "soul", "sleep"});
         //System.out.println(result1);
@@ -229,15 +307,25 @@ public static int numberAddition(String str) {
 
         //var result2 = palindromeCreator("racecar");
         //System.out.println(result2);
-       // var result1 = palindromeCreator("vhhgghhgghhk");
-       // System.out.println(result1);
-       // var result3 = palindromeCreator("abca");
-       // System.out.println(result3);
+        // var result1 = palindromeCreator("vhhgghhgghhk");
+        // System.out.println(result1);
+        // var result3 = palindromeCreator("abca");
+        // System.out.println(result3);
 
-        var result1 = numberAddition("Chillhouse Mix 2 (2001)");
-        System.out.println(result1);
-        var result2 = numberAddition("Cafe del Mar 5 (1998)");
-        System.out.println(result2);
+        //var result1 = numberAddition("Chillhouse Mix 2 (2001)");
+        //System.out.println(result1);
+        //var result2 = numberAddition("Cafe del Mar 5 (1998)");
+        //System.out.println(result2);
+
+        //var res1 = nonrepeatingCharacter("agettkgaeee");
+        //System.out.println(res1);
+        //var res2 = nonrepeatingCharacter("A wise man apportions his beliefs to the evidence");
+        //System.out.println(res2);
+
+        //var result1 = multiplicativePersistence(2677889);
+        //System.out.println(result1);
+        //var result2 = multiplicativePersistence(8192);
+        //System.out.println(result2);
     }
-    }
+}
 
