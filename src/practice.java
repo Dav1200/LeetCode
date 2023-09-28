@@ -232,47 +232,95 @@ public class practice {
 
     }
 
-    public static int meanMode(int[] nums ){
+    public static int meanMode(int[] nums) {
         int mean = 0;
-        int mode= 0;
-        HashMap<Integer,Integer> modeMap = new HashMap<>();
-        for(int i = 0 ; i < nums.length;i++)
-        {
-            if(modeMap.containsKey(nums[i])){
-               modeMap.put(nums[i],modeMap.get(nums[i])+1);
-            }
-            else {
-                modeMap.put(nums[i],1);
+        int mode = 0;
+        HashMap<Integer, Integer> modeMap = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            if (modeMap.containsKey(nums[i])) {
+                modeMap.put(nums[i], modeMap.get(nums[i]) + 1);
+            } else {
+                modeMap.put(nums[i], 1);
             }
 
 
             mean += nums[i];
 
         }
-        mean = mean/nums.length;
+        mean = mean / nums.length;
 
         int high = 0;
-         int value = 0;
+        int value = 0;
 
-        for(Map.Entry<Integer,Integer> ent:modeMap.entrySet()){
-         if(ent.getValue() > high){
-             high = ent.getValue();
-             value = ent.getKey();
-         }
+        for (Map.Entry<Integer, Integer> ent : modeMap.entrySet()) {
+            if (ent.getValue() > high) {
+                high = ent.getValue();
+                value = ent.getKey();
+            }
         }
-        if(value == mean){
+        if (value == mean) {
             return 1;
-        }
-        else
+        } else
             return 0;
 
     }
 
+    public static String arrayAdditionOne(int[] arr) {
+        int total = 0;
+        int highest = 0;
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] > highest) {
+                highest = arr[i];
+            }
+        }
+
+
+        for (int i = 0; i < arr.length; i++) {
+            int sum = 0;
+            if (arr[i] != highest) {
+            }
+            for (int k = 0; k < arr.length; k++) {
+                if (arr[k] != highest && arr[k] != arr[i]) {
+                    sum += arr[k];
+                    if (sum == highest) {
+                        return "true";
+                    }
+                }
+            }
+        }
+        return "false";
+    }
+
+    public static int binaryReversal(String num ){
+        int decimal = Integer.parseInt(num);
+        String binary = Integer.toBinaryString(decimal);
+        int maxlenght = (int) ((int) Math.ceil(binary.length()  / 8.0 )*8.0);
+
+        StringBuilder newbinary = new StringBuilder(binary);
+        while (newbinary.length()< maxlenght ){
+            newbinary.insert(0,"0");
+        }
+        newbinary = newbinary.reverse();
+        return Integer.parseInt(newbinary.toString(),2);
+
+
+    }
+
     public static void main(String[] args) {
-        var result1 = meanMode(new int[]{5, 3, 3, 3, 1});
+        var result1 = binaryReversal("47");
         System.out.println(result1);
-        var result2 = meanMode(new int[]{64, 64, 64, 64, 64, 64, 64, 64, 1024});
+        var result2 = binaryReversal("2");
         System.out.println(result2);
+       // var result1 = arrayAdditionOne(new int[]{4, 6, 23, 10, 1, 3});
+       // System.out.println(result1);
+       // var result2 = arrayAdditionOne(new int[]{2, 6, 10, 18});
+       // System.out.println(result2);
+
+
+        //var result1 = meanMode(new int[]{5, 3, 3, 3, 1});
+        //System.out.println(result1);
+        //var result2 = meanMode(new int[]{64, 64, 64, 64, 64, 64, 64, 64, 1024});
+        //System.out.println(result2);
         //String result = stringMerge("abc1*kyoo");
         //System.out.println(result);
 
