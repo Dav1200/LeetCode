@@ -1,79 +1,39 @@
+import java.util.HashMap;
+import java.util.Map;
+
 public class romanInt {
     //IIV
     public static int romanToInt(String s) {
+        HashMap<Character, Integer> romanToInt = new HashMap<>();
+        romanToInt.put('I', 1);
+        romanToInt.put('V', 5);
+        romanToInt.put('X', 10);
+        romanToInt.put('L', 50);
+        romanToInt.put('C', 100);
+        romanToInt.put('D', 500);
+        romanToInt.put('M', 1000);
+
         int total = 0;
-        int temp = 0;
-        boolean odd = false;
-        for (int i = 0; i < s.length(); i++) {
-            //System.out.println(i);
-            //find patterns of two first
+        int prevValue = 0;
 
-            if (i + 1 < s.length()) {
-                if (s.charAt(i) == 'I' && s.charAt(i + 1) == 'V') {
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int currentValue = romanToInt.get(s.charAt(i));
 
-                    total += 4;
-                    i++;
-                    continue;
-                }
-                if (s.charAt(i) == 'I' && s.charAt(i + 1) == 'X') {
-                    total += 9;
-                    i++;
-                    continue;
-
-                }
-
-                if (s.charAt(i) == 'X' && s.charAt(i + 1) == 'L') {
-                    total += 40;
-                    i++;
-                    continue;
-                }
-                if (s.charAt(i) == 'X' && s.charAt(i + 1) == 'C') {
-                    total += 90;
-                    i++;
-                    continue;
-                }
-                if (s.charAt(i) == 'C' && s.charAt(i + 1) == 'D') {
-                    total += 400;
-                    i++;
-                    continue;
-                }
-                if (s.charAt(i) == 'C' && s.charAt(i + 1) == 'M') {
-                    total += 900;
-                    i++;
-                    continue;
-                }
+            if (currentValue < prevValue) {
+                total -= currentValue;
+            } else {
+                total += currentValue;
             }
 
-            if (s.charAt(i) == 'I') {
-                total += 1;
-            }
-            if (s.charAt(i) == 'V') {
-                total += 5;
-            }
-            if (s.charAt(i) == 'X') {
-                total += 10;
-            }
-            if (s.charAt(i) == 'L') {
-                total += 50;
-            }
-            if (s.charAt(i) == 'C') {
-                total += 100;
-            }
-            if (s.charAt(i) == 'D') {
-                total += 500;
-            }
-            if (s.charAt(i) == 'M') {
-                total += 1000;
-            }
-
-
+            prevValue = currentValue;
         }
+
         return total;
     }
 
 
     public static void main(String[] args) {
-        System.out.println(romanToInt("IXX"));
+        System.out.println(romanToInt("VIII"));
 
 
     }
