@@ -7,7 +7,7 @@ public class practice {
         if (num == 0) {
             return "false";
         }
-
+        
         while (num != 2) {
             if (num % 2 == 0) {
                 num = num / 2;
@@ -53,7 +53,11 @@ public class practice {
 
 
         for (int i = 0; i < str.length(); i++) {
-
+            if(seenletter){
+                if(Character.isLetter(str.charAt(i))){
+                    return "false";
+                }
+            }
             if (Character.isLetter(str.charAt(i)) && !seen) {
                 return "false";
             }
@@ -68,6 +72,7 @@ public class practice {
             if (seen && seenletter) {
                 if (str.charAt(i) == '+') {
                     seen = false;
+                    seenletter = false;
                 }
             }
         }
@@ -306,24 +311,121 @@ public class practice {
 
     }
 
+    public static String bitwiseOne(String [] nums)
+    {
+        StringBuilder newBianry = new StringBuilder();
+        String num1 = nums[0];
+        String num2 = nums[1];
+
+        for(int i = 0; i < num1.length();i++){
+            newBianry.append(Integer.parseInt(String.valueOf(num1.charAt(i))) | Integer.parseInt(String.valueOf(num2.charAt(i))));
+        }
+
+        return newBianry.toString();
+
+
+    }
+public static int largestPair(int num){
+
+        String numStr = String.valueOf(num);
+        int highest = 0;
+        for(int i = 0;i<numStr.length()-1;
+        i++){
+            int total = Integer.parseInt(numStr.substring(i,i+2));
+            if(total>highest){
+                highest = total;
+            }
+
+        }
+        return highest;
+
+
+}
+
+
+public static String dashInsert(String str){
+
+        StringBuilder newString = new StringBuilder();
+        boolean odd =false;
+        boolean odd2 = false;
+
+        for(int i = 0; i< str.length();i++){
+            if(odd){
+                if (Integer.parseInt(String.valueOf(str.charAt(i))) % 2== 0){
+                    odd = false;
+                }
+            }
+            if(Integer.parseInt(String.valueOf(str.charAt(i))) % 2== 1&& !odd){
+                odd = true;
+                newString.append(str.charAt(i));
+            continue;
+            }
+
+            if(odd){
+                if(Integer.parseInt(String.valueOf(str.charAt(i))) % 2== 1){
+                    newString.append("-");
+                    newString .append(str.charAt(i));
+            continue;
+                }
+            }
+            newString.append(str.charAt(i));
+
+        }
+        return newString.toString();
+
+}
+
+public static String letterChanges(String str){
+        StringBuilder newString = new StringBuilder();
+        for(int i = 0;i<str.length();i++)
+        {
+            if(Character.isLetter(str.charAt(i))){
+                char nextchar = (char) ((char) str.charAt(i)+1);
+                if(nextchar > 'z'){
+                    nextchar = 'a';
+                }
+                if(nextchar == 'a' || nextchar == 'e'  || nextchar == 'i' || nextchar == 'o' || nextchar == 'u'){
+                    nextchar = Character.toUpperCase(nextchar);
+                }
+
+                newString.append(nextchar);
+            }
+
+            else {
+                newString.append(str.charAt(i));
+            }
+        }
+        return newString.toString();
+    }
     public static void main(String[] args) {
-        var result1 = binaryReversal("47");
-        System.out.println(result1);
-        var result2 = binaryReversal("2");
-        System.out.println(result2);
+       // var result1 = binaryReversal("47");
+     //   System.out.println(result1);
+      //  var result2 = binaryReversal("2");
+      //  System.out.println(result2);
        // var result1 = arrayAdditionOne(new int[]{4, 6, 23, 10, 1, 3});
        // System.out.println(result1);
        // var result2 = arrayAdditionOne(new int[]{2, 6, 10, 18});
        // System.out.println(result2);
-
-
+        //var result1 = letterChanges("anthology");
+       // System.out.println(result1);
+        //var result2 = letterChanges("equilibrium");
+        //System.out.println(result2);
+        //var result3 = letterChanges("oxford");
+      //  System.out.println(result3);
+      //  int result1 = largestPair(567353664);
+     //   System.out.println(result1);
+      //  int result2 = largestPair(8163264);
+      //  System.out.println(result2);
         //var result1 = meanMode(new int[]{5, 3, 3, 3, 1});
         //System.out.println(result1);
         //var result2 = meanMode(new int[]{64, 64, 64, 64, 64, 64, 64, 64, 1024});
         //System.out.println(result2);
         //String result = stringMerge("abc1*kyoo");
         //System.out.println(result);
-
+       // var result1 = dashInsert("454793");
+       // System.out.println(result1);
+        //var result2 = dashInsert("25928");
+        //System.out.println(result2);
         //String result1 = swapCase("Hello World");
         //System.out.println(result1);
 
@@ -333,8 +435,8 @@ public class practice {
         //var result1 = snakeCase("Revolt& is& the right of the people");
         // System.out.println(result1);
 
-        // var result2 = simpleSymbols("=+e++r+ff+v+");
-        //System.out.println(result2);
+         var result2 = simpleSymbols("++d+===+c++==a+");
+            System.out.println(result2);
 
         //  String result1 = simpleEvens(222252);
         //  System.out.println(result1);
@@ -374,6 +476,11 @@ public class practice {
         //System.out.println(result1);
         //var result2 = multiplicativePersistence(8192);
         //System.out.println(result2);
+
+      //  var result1 = bitwiseOne(new String[]{"1001", "0100"});
+       // System.out.println(result1);
+       //var result2 = bitwiseOne(new String[]{"110001", "111100"});
+       // System.out.println(result2);
     }
 }
 
