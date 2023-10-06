@@ -22,7 +22,7 @@ public class LinkedListCycle {
            if (a.contains(head)) {
                return true;
            }
-           //otherwise add the element to the hashset and move the pointer forwards
+           //otherwise, add the element to the hashset and move the pointer forwards
            a.add(head);
            head = head.next;
 
