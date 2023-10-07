@@ -7,15 +7,12 @@ public class ValidPalindrome
         if(str.length() == 0){
             return true;
         }
-
         StringBuilder newStr = new StringBuilder();
 
         for(int i = 0;i< str.length();i++){
             if(Character.isLetter(str.charAt(i))|| Character.isDigit(str.charAt(i))){
                 newStr.append(str.charAt(i));
             }
-
-
         }
         str = newStr.toString();
         String reversed = newStr.reverse().toString();
