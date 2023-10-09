@@ -24,17 +24,23 @@ public class symmetricTree {
     }
 
     public static boolean test(TreeNode a, TreeNode b){
-       return false;
+        if(a ==null && b == null){
+            return true;
+        }
+        if( a== null && b !=null || a!= null && b==null){
+            return false;
+        }
+        if(a.val != b.val){
+            return false;
+        }
+
+        return test(a.left,b.right) && test(a.right,b.left);
 
     }
     public static boolean isSymmetric(TreeNode root) {
 
-         if(root.left ==null && root.right == null){
-             return true;
-         }
-
-
-return false;
+       return  test(root.left,root.right);
+       
 
 }
 
