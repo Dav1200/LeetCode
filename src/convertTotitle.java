@@ -23,7 +23,16 @@ public class convertTotitle {
     public static void main(String[] args) {
 
 
-        System.out.println(cconvertToTitle(52));
+
+        //wb                       y
+        //210
+        // 23 times 26 times 26 +  2times 26 +  25 =
+
+
+        // w times 26 times 26 , b times 26, + 26;
+
+
+        System.out.println(cconvertToTitle(15625));
 
     }
 }

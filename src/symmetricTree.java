@@ -40,7 +40,7 @@ public class symmetricTree {
     public static boolean isSymmetric(TreeNode root) {
 
        return  test(root.left,root.right);
-       
+
 
 }
 
