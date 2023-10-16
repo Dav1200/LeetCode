@@ -34,7 +34,7 @@ public class RemoveLinkedListElements {
 
         //start fromt he new position as that is not equal to the val
         ListNode temp = head;
-        //replace pointers with next next. 
+        //replace pointers with next next.
 
         while (temp != null && temp.next !=null) {
             if (temp.next.val == val) {
