@@ -15,14 +15,12 @@ public class MajorityElement {
                 majority.put(nums[i], 1);
             }
         }
-
         for (Map.Entry<Integer, Integer> a : majority.entrySet()) {
             if (a.getValue() > major) {
                 ret = a.getKey();
 
             }
         }
-
         return ret;
 
     }
