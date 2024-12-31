@@ -4,5 +4,8 @@ public class Test{
         Methods m  = new Methods();
         int[] nums = {2,2,1};
         System.out.println(m.singleNumber(nums));
+        System.out.println("hello");
     }
+    
+    //testing
 }
